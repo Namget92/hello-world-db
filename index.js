@@ -9,12 +9,8 @@ app.get("/", (req, res) => {
 
 app.get("/add/:name", async (req, res) => {
   // Ersätt person med den skapade personen från databasen
-  const person = {
-    id: 0,
-    name: "Ryan",
-  };
 
-  await knex("people").insert({ name: req.params.name });
+  const person = await knex("people").insert({ name: req.params.name });
 
   res.send(person);
 });
