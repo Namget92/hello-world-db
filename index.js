@@ -15,14 +15,10 @@ app.get("/add/:name", async (req, res) => {
   res.send(person);
 });
 
-app.get("/list", (req, res) => {
+app.get("/list", async (req, res) => {
   // Ersätt people med alla personer från databasen
-  const people = [
-    {
-      id: 0,
-      name: "Ryan",
-    },
-  ];
+
+  const people = await knex("people").select();
 
   res.send(people);
 });
